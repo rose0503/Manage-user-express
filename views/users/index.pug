@@ -1,0 +1,28 @@
+extends ../layouts/common.pug
+block content
+    h1 
+        span Danh sach
+        a.btn.btn-primary.ml-2(href="/users/create") New
+    .d-flex.align-items-center
+        form.ml-auto(action="/users/search", method="get", class='d-flex')
+            input(type="text", name="q", id="searchItem", class='form-control mr-2')
+            button(type="submit", class='btn btn-primary') search
+    table.table
+        tr
+            th Name
+            th Phone
+            th Action
+    
+        each val in user
+            tr
+                td=val.name
+                td=val.phone                 
+                td 
+                    a(href='/users/' + val.id) View
+    script.
+        var searchInput = document.getElementById('searchItem');
+        searchInput.value = sessionStorage.getItem('draft');
+        searchInput.addEventListener('change', function(){
+        sessionStorage.setItem('draft', searchInput.value);
+        });        
+

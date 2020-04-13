@@ -1,0 +1,15 @@
+extends ../layouts/common.pug
+block content
+    h1 Create a new user
+
+    if error
+        each e in error
+            .alert.alert-danger=e        
+    form(action="/users/create", method="POST")
+        .form-group
+            label(for="name") Name
+            input.form-control(type="text", name="name", id='name', value= values ? values.name : "")
+        .form-group
+            label(for="phone") Phone
+            input.form-control(type="text", name="phone", id='phone', value = values ? values.phone : "")
+        button.btn.btn-primary Create

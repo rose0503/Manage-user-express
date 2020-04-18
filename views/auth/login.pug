@@ -1,0 +1,20 @@
+extends ../layouts/common.pug
+block content
+    .bg-form
+        link(rel="stylesheet", href="/styles/login.css")
+        .form
+            h2 Welcome
+            if error
+                    each e in error
+                        .alert.alert-danger=e
+            form(method="POST")
+                .input-group
+                    input#username(type='text',required='', name='email', value= values ? values.email : "")
+                    label(for='username') Username
+                .input-group 
+                    input#password(type='password', required='', name='password', value= values ? values.password : "")
+                    label(for='password') Password
+                button(type='submit') Login
+                p
+                    | Don&apos;t have a account? 
+                    a(href='#') Sign up
